@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HODLINFO Price Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/api/prices')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('exchange-table');
+                    let tableHTML = '';
+                    data.forEach((exchange, index) => {
+                        tableHTML += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${exchange.platform}</td>
+                                <td>${exchange.lastPrice}</td>
+                                <td>${exchange.buySell}</td>
+                                <td>${exchange.diff}</td>
+                                <td>${exchange.savings}</td>
+                            </tr>
+                        `;
+                    });
+                    tableBody.innerHTML = tableHTML;
+                })
+                .catch(error => console.error('Error fetching exchange data:', error));
+        });
+        
+    </script> 
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HODLINFO</h1>
+            <div class="currency-toggle">
+                <div class="dropdown">
+    
+<button class="dropdown-btn" onclick="toggleDropdown1()">INR</button>
+<div id="myDropdown1" class="dropdown-content">
+<a href="#">INR</a>
+
+</div>
+
+  
+<div class="dropdown">
+    
+<button class="dropdown-btn" onclick="toggleDropdown()">BTC</button>
+<div id="myDropdown" class="dropdown-content">
+<a href="#">BTC</a>
+<a href="#">ETH</a>
+<a href="#">USDT</a>
+<a href="#">XRP</a>
+<a href="#">TRX</a>
+<a href="#">DASH</a>
+<a href="#">ZEC</a>
+<a href="#">XEM</a>
+<a href="#">IOST</a>
+<a href="#">WIN</a>
+<a href="#">BTT</a>
+<a href="#">WRX</a>
+</div>
+</div> 
+
+  
+  <button><a href="https://wazirx.com/signup " target="_blank" class="dropdown-btn">BUY BTC</a></button>
+</div>
+</div> 
+<button> <a href="https://hodlinfo.com/connect/telegram" target="_blank" class="dropdown-btn1">Connect Telegram </a></button>
+
+
+
+<div class="timer-container">
+    <div class="circle circle-left" id="left-half"></div>
+    <div class="circle circle-right" id="right-half"></div>
+    <div class="inner-circle" id="countdown">60</div>
+</div>
+        </header>
+        <section class="price-section">
+            <h2>Best Price to Trade</h2>
+            <h1 class="price"></h1>
+            <div class="price-stats">
+                <li class="li">
+                    <ul class="min">0.1 %  5 Mins</ul>
+                    <ul class="min">0.96 % 1 Hour</ul>
+                    <ul class="price min1">₹26,56,110</ul>
+                    <ul class="min">2.73 % 1 Day</ul>
+                    <ul class="min">7.51 % 7 Days</ul>
+                </li>
+                
+            </div>
+        </section>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Platform</th>
+                    <th>Last Traded Price</th>
+                    <th>Buy / Sell Price</th>
+                    <th>Difference</th>
+                    <th>Savings</th>
+                </tr>
+            </thead>
+            <tbody id="exchange-table">
+              
+            </tbody>
+        </table>
+
+            <button class="footer " onclick="addHomeScreen()">Add HODLINFO to  Home Screen</button>
+      
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
